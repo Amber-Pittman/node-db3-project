@@ -30,7 +30,7 @@ function findSteps(id) {
             "steps.id",
             "schemes.scheme_name",
             "steps.step_number",
-            "steps.instructions
+            "steps.instructions"
         )
         .join(
             "steps",
@@ -56,7 +56,11 @@ function add(scheme) {
 //     -   Expects a changes object and an `id`.
 //     -   Updates the scheme with the given id.
 //     -   Resolves to the newly updated scheme object.
-
+function update(changes, id) {
+    return db("schemes")
+        .where({id})
+        .update(changes)
+}
 
 // -   `remove(id)`:
 //     -   Removes the scheme object with the provided id.
@@ -64,6 +68,11 @@ function add(scheme) {
 //     -   Resolves to `null` on an invalid id.
 //     -   (Hint: Only worry about removing the `scheme`. The database is configured 
 //          to automatically remove all associated steps.)
+function remove(id) {
+    return db("schemes")
+        .where({id})
+        .del()
+}
 
 
 
